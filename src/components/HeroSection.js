@@ -80,62 +80,76 @@ function MatrixRain() {
   );
 }
 
-// Animated cyber shield SVG
-function CyberShield() {
+// Animated cyber profile with radar glow
+function CyberProfile() {
   return (
     <motion.div
-      className="float-anim"
       style={{
         position: 'relative',
-        width: 340,
-        height: 340,
-        flexShrink: 0,
-      }}
-    >
-      {/* Outer rotating ring */}
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: -20,
-          borderRadius: '50%',
-          border: '1px solid rgba(56,189,248,0.15)',
-          borderTopColor: 'rgba(56,189,248,0.6)',
-          borderRightColor: 'rgba(129,140,248,0.4)',
-        }}
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-      />
-      {/* Middle ring */}
-      <motion.div
-        style={{
-          position: 'absolute',
-          inset: 10,
-          borderRadius: '50%',
-          border: '1px solid rgba(129,140,248,0.12)',
-          borderBottomColor: 'rgba(56,189,248,0.4)',
-        }}
-        animate={{ rotate: -360 }}
-        transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-      />
-
-      {/* Glow behind shield */}
-      <div style={{
-        position: 'absolute',
-        inset: '20%',
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(56,189,248,0.15) 0%, rgba(129,140,248,0.08) 50%, transparent 70%)',
-        filter: 'blur(20px)',
-      }} />
-
-      {/* Shield SVG */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
+        width: 380,
+        height: 380,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+      }}
+    >
+      {/* Radar rings */}
+      {[1, 2, 3].map((i) => (
+        <motion.div
+          key={i}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            borderRadius: '50%',
+            border: '1px solid var(--accent)',
+            opacity: 0,
+          }}
+          animate={{
+            scale: [1, 1.4],
+            opacity: [0.3, 0],
+          }}
+          transition={{
+            duration: 3,
+            delay: i * 0.8,
+            repeat: Infinity,
+            ease: 'easeOut',
+          }}
+        />
+      ))}
+
+      {/* Rotating outer ring */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: '50%',
+          border: '1.5px dashed var(--accent)',
+          opacity: 0.2,
+        }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+      />
+
+      {/* Central Shield Badge (Re-integrated per user request) */}
+      <div style={{
+        position: 'relative',
+        width: 250,
+        height: 250,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 5,
       }}>
-        <svg width="180" height="180" viewBox="0 0 100 120" fill="none">
+        {/* Glow behind shield */}
+        <div style={{
+          position: 'absolute',
+          inset: '20%',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(56,189,248,0.2) 0%, transparent 70%)',
+          filter: 'blur(25px)',
+        }} />
+
+        <svg width="160" height="160" viewBox="0 0 100 120" fill="none" style={{ position: 'relative', zIndex: 2 }}>
           <defs>
             <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.9"/>
@@ -143,16 +157,14 @@ function CyberShield() {
               <stop offset="100%" stopColor="#9f7aea" stopOpacity="0.7"/>
             </linearGradient>
             <linearGradient id="shieldFill" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.07"/>
-              <stop offset="100%" stopColor="#818cf8" stopOpacity="0.04"/>
+              <stop offset="0%" stopColor="#38bdf8" stopOpacity="0.08"/>
+              <stop offset="100%" stopColor="#818cf8" stopOpacity="0.05"/>
             </linearGradient>
             <filter id="shieldGlow">
-              <feGaussianBlur stdDeviation="2" result="blur"/>
+              <feGaussianBlur stdDeviation="3" result="blur"/>
               <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
             </filter>
           </defs>
-
-          {/* Shield body */}
           <path
             d="M50 5 L90 22 L90 55 C90 80 70 100 50 115 C30 100 10 80 10 55 L10 22 Z"
             fill="url(#shieldFill)"
@@ -160,39 +172,35 @@ function CyberShield() {
             strokeWidth="1.5"
             filter="url(#shieldGlow)"
           />
-          {/* Inner shield lines */}
-          <path
-            d="M50 18 L78 31 L78 55 C78 74 65 90 50 102 C35 90 22 74 22 55 L22 31 Z"
-            fill="none"
-            stroke="url(#shieldGrad)"
-            strokeWidth="0.6"
-            strokeOpacity="0.4"
-          />
-          {/* Lock icon */}
           <rect x="38" y="58" width="24" height="20" rx="3" fill="none" stroke="url(#shieldGrad)" strokeWidth="1.5"/>
           <path d="M44 58 L44 52 C44 46 56 46 56 52 L56 58" fill="none" stroke="url(#shieldGrad)" strokeWidth="1.5" strokeLinecap="round"/>
           <circle cx="50" cy="68" r="2.5" fill="url(#shieldGrad)"/>
           <line x1="50" y1="68" x2="50" y2="74" stroke="url(#shieldGrad)" strokeWidth="1.5" strokeLinecap="round"/>
-          {/* Corner dots */}
-          {[[20,22],[80,22],[90,55],[10,55]].map(([x,y], i) => (
-            <motion.circle
-              key={i}
-              cx={x} cy={y} r="2"
-              fill="var(--accent)"
-              animate={{ opacity: [0.3, 1, 0.3] }}
-              transition={{ duration: 2, delay: i * 0.5, repeat: Infinity }}
-            />
-          ))}
         </svg>
+
+        {/* Scanning line effect */}
+        <motion.div
+          style={{
+            position: 'absolute',
+            top: '20%', left: '10%', right: '10%',
+            height: 1,
+            background: 'var(--accent)',
+            opacity: 0.3,
+            boxShadow: '0 0 8px var(--accent)',
+            zIndex: 10,
+          }}
+          animate={{ top: ['20%', '80%', '20%'] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+        />
       </div>
 
       {/* Floating data tags */}
       {[
-        { label: 'CTF', x: -40, y: 80, delay: 0 },
-        { label: 'OSINT', x: 290, y: 120, delay: 0.5 },
-        { label: 'Python', x: -20, y: 220, delay: 1 },
-        { label: 'Linux', x: 270, y: 240, delay: 1.5 },
-      ].map((tag) => (
+        { label: 'ADMIN_RT', x: -30, y: 100 },
+        { label: 'OSINT_OK', x: 260, y: 50 },
+        { label: 'SEC_AUDIT', x: 250, y: 280 },
+        { label: 'ROOT_SHELL', x: -60, y: 240 },
+      ].map((tag, i) => (
         <motion.div
           key={tag.label}
           style={{
@@ -202,16 +210,15 @@ function CyberShield() {
             background: 'var(--surface)',
             backdropFilter: 'blur(12px)',
             border: '1px solid var(--border)',
-            borderRadius: 8,
-            padding: '5px 12px',
-            fontSize: 11,
+            borderRadius: 6,
+            padding: '4px 10px',
+            fontSize: 10,
             fontFamily: 'JetBrains Mono, monospace',
             color: 'var(--accent)',
-            whiteSpace: 'nowrap',
             boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
           }}
-          animate={{ y: [0, -8, 0] }}
-          transition={{ duration: 3 + tag.delay, delay: tag.delay, repeat: Infinity, ease: 'easeInOut' }}
+          animate={{ y: [0, -6, 0] }}
+          transition={{ duration: 3, delay: i * 0.5, repeat: Infinity }}
         >
           {tag.label}
         </motion.div>
@@ -528,7 +535,7 @@ export default function HeroSection() {
             transition={{ duration: 0.9, delay: 0.3, ease: 'backOut' }}
             className="hidden lg:flex items-center justify-center"
           >
-            <CyberShield />
+            <CyberProfile />
           </motion.div>
         </div>
       </div>

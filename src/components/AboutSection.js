@@ -3,25 +3,42 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const SKILLS = [
+  // Languages
   { label: 'Python', category: 'lang', color: '#4f93ff', bg: 'rgba(79,147,255,0.08)', icon: '🐍' },
-  { label: 'C', category: 'lang', color: '#a78bfa', bg: 'rgba(167,139,250,0.08)', icon: '#️⃣' },
-  { label: 'MySQL', category: 'lang', color: '#34d399', bg: 'rgba(52,211,153,0.08)', icon: '🗄️' },
+  { label: 'C / C#', category: 'lang', color: '#a78bfa', bg: 'rgba(167,139,250,0.08)', icon: '#️⃣' },
+  { label: 'JavaScript', category: 'lang', color: '#f1e05a', bg: 'rgba(241,224,90,0.08)', icon: '📜' },
   { label: 'Flutter / Dart', category: 'lang', color: '#22d3ee', bg: 'rgba(34,211,238,0.08)', icon: '📱' },
-  { label: 'HTML / CSS', category: 'lang', color: '#fb923c', bg: 'rgba(251,146,60,0.08)', icon: '🌐' },
-  { label: 'Kali Linux', category: 'security', color: '#ef4444', bg: 'rgba(239,68,68,0.08)', icon: '🔥' },
-  { label: 'Web App Testing', category: 'security', color: '#f43f5e', bg: 'rgba(244,63,94,0.08)', icon: '🔎' },
-  { label: 'Bug Detection', category: 'security', color: '#f59e0b', bg: 'rgba(245,158,11,0.08)', icon: '🐛' },
-  { label: 'OSINT', category: 'security', color: '#ef4444', bg: 'rgba(239,68,68,0.08)', icon: '👁️' },
-  { label: 'Linux', category: 'tools', color: '#fbbf24', bg: 'rgba(251,191,36,0.08)', icon: '🐧' },
-  { label: 'Low-code Platforms', category: 'tools', color: '#38bdf8', bg: 'rgba(56,189,248,0.08)', icon: '⚡' },
-  { label: 'Critical Thinking', category: 'soft', color: '#c084fc', bg: 'rgba(192,132,252,0.08)', icon: '🧠' },
+  
+  // Databases & Cloud
+  { label: 'Firebase', category: 'cloud', color: '#ffca28', bg: 'rgba(255,202,40,0.08)', icon: '🔥' },
+  { label: 'Supabase', category: 'cloud', color: '#3ecf8e', bg: 'rgba(62,207,142,0.08)', icon: '⚡' },
+  { label: 'MongoDB', category: 'cloud', color: '#47a248', bg: 'rgba(71,162,72,0.08)', icon: '🍃' },
+  { label: 'MySQL', category: 'cloud', color: '#34d399', bg: 'rgba(52,211,153,0.08)', icon: '🗄️' },
+
+  // Security
+  { label: 'Kali Linux', category: 'security', color: '#ef4444', bg: 'rgba(239,68,68,0.08)', icon: '🛡️' },
+  { label: 'OSINT', category: 'security', color: '#f43f5e', bg: 'rgba(244,63,94,0.08)', icon: '👁️' },
+  { label: 'Web Security', category: 'security', color: '#f59e0b', bg: 'rgba(245,158,11,0.08)', icon: '🔎' },
+
+  // Tools
+  { label: 'Git', category: 'tools', color: '#f05032', bg: 'rgba(240,80,50,0.08)', icon: '🌿' },
+  { label: 'Docker', category: 'tools', color: '#2496ed', bg: 'rgba(36,150,237,0.08)', icon: '🐳' },
+  { label: 'Figma / Canva', category: 'tools', color: '#a259ff', bg: 'rgba(162,89,255,0.08)', icon: '🎨' },
+  { label: 'Stitch', category: 'tools', color: '#ec4899', bg: 'rgba(236,72,153,0.08)', icon: '🧵' },
+
+  // Soft Skills
+  { label: 'Leadership', category: 'soft', color: '#fbbf24', bg: 'rgba(251,191,36,0.08)', icon: '🚩' },
+  { label: 'Collaborator', category: 'soft', color: '#38bdf8', bg: 'rgba(56,189,248,0.08)', icon: '🤝' },
+  { label: 'Analytical', category: 'soft', color: '#c084fc', bg: 'rgba(192,132,252,0.08)', icon: '🧠' },
+  { label: 'Adaptable', category: 'soft', color: '#10b981', bg: 'rgba(16,185,129,0.08)', icon: '🔄' },
 ];
 
 const CATEGORY_META = {
-  lang: { label: 'Languages & Frameworks', color: '#38bdf8' },
+  lang: { label: 'Development Languages', color: '#38bdf8' },
+  cloud: { label: 'Databases & Cloud', color: '#10b981' },
   security: { label: 'Security & Research', color: '#ef4444' },
-  tools: { label: 'Tools & Platforms', color: '#f59e0b' },
-  soft: { label: 'Soft Skills', color: '#c084fc' },
+  tools: { label: 'Tools & Design', color: '#f59e0b' },
+  soft: { label: 'Soft Skills & Leadership', color: '#c084fc' },
 };
 
 const containerVariants = {
