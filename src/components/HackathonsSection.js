@@ -20,21 +20,21 @@ const PLACEHOLDER_CERTS = [
 function CertCard({ cert, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="card"
-      style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}
+      className="card group"
+      style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 20 }}
     >
       {/* Cert preview area */}
       <div
         style={{
           width: '100%',
-          aspectRatio: '4/3',
-          borderRadius: 10,
-          background: 'var(--surface-2)',
-          border: '1px solid var(--border)',
+          aspectRatio: '16/10',
+          borderRadius: 12,
+          background: 'linear-gradient(135deg, var(--bg-deep), var(--surface-2))',
+          border: '1px solid rgba(255,255,255,0.05)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -43,28 +43,28 @@ function CertCard({ cert, index }) {
         }}
       >
         {cert.thumbnail ? (
-          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={cert.thumbnail}
             alt={cert.name}
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            className="hover-zoom group-hover:scale-105"
           />
         ) : (
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 48, marginBottom: 8 }}>{cert.icon || '📜'}</div>
-            <p className="font-mono" style={{ fontSize: 11, color: 'var(--text-muted)' }}>
-              Certificate
+            <div style={{ fontSize: 40, marginBottom: 8, filter: 'drop-shadow(0 0 10px rgba(56,189,248,0.3))' }}>{cert.icon || '📜'}</div>
+            <p className="font-mono" style={{ fontSize: 10, color: 'var(--text-muted)', letterSpacing: '0.1em' }}>
+              VERIFIED_CREDENTIAL
             </p>
           </div>
         )}
       </div>
 
       {/* Meta */}
-      <div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+      <div style={{ flex: 1 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 8 }}>
           <h3
             className="font-display"
-            style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)' }}
+            style={{ fontSize: 16, fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.3 }}
           >
             {cert.name}
           </h3>
@@ -72,12 +72,13 @@ function CertCard({ cert, index }) {
             <span
               className="font-mono"
               style={{
-                fontSize: 11,
-                padding: '3px 8px',
-                borderRadius: 4,
-                background: 'rgba(245,158,11,0.1)',
-                color: 'var(--accent-alt)',
-                border: '1px solid rgba(245,158,11,0.3)',
+                fontSize: 10,
+                padding: '3px 10px',
+                borderRadius: 6,
+                background: 'rgba(245,158,11,0.08)',
+                color: 'var(--accent-tertiary)',
+                border: '1px solid rgba(245,158,11,0.2)',
+                fontWeight: 700,
               }}
             >
               {cert.year}
@@ -85,7 +86,7 @@ function CertCard({ cert, index }) {
           )}
         </div>
         {cert.note && (
-          <p style={{ fontSize: 13, color: 'var(--text-muted)' }}>{cert.note}</p>
+          <p style={{ fontSize: 13, color: 'var(--text-soft)', lineHeight: 1.6 }}>{cert.note}</p>
         )}
       </div>
 
@@ -94,10 +95,16 @@ function CertCard({ cert, index }) {
         target="_blank"
         rel="noopener noreferrer"
         className="btn-outline"
-        style={{ fontSize: 13, padding: '8px 16px', justifyContent: 'center' }}
+        style={{ 
+          fontSize: 12, 
+          padding: '10px 16px', 
+          justifyContent: 'center',
+          background: 'rgba(255,255,255,0.03)',
+          borderColor: 'rgba(255,255,255,0.08)',
+        }}
       >
-        View Certificate
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <span>View Credential</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
           <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
         </svg>
       </a>

@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from '@/context/ThemeContext';
 
 const ROLES = [
   'Cybersecurity Student',
@@ -13,6 +14,8 @@ const ROLES = [
 // Matrix rain canvas
 function MatrixRain() {
   const canvasRef = useRef(null);
+  const { theme } = useTheme();
+  
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -32,18 +35,21 @@ function MatrixRain() {
     const drops = Array(cols).fill(0).map(() => Math.random() * -100);
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(2, 8, 23, 0.055)';
+      ctx.fillStyle = theme === 'light' ? 'rgba(255, 255, 255, 0.12)' : 'rgba(2, 8, 23, 0.055)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       for (let i = 0; i < drops.length; i++) {
         const char = chars[Math.floor(Math.random() * chars.length)];
         const brightness = Math.random();
-        if (brightness > 0.98) {
-          ctx.fillStyle = '#ffffff';
-        } else if (brightness > 0.9) {
-          ctx.fillStyle = '#00d4ff';
+        
+        if (theme === 'light') {
+           if (brightness > 0.95) ctx.fillStyle = '#111827';
+           else ctx.fillStyle = `rgba(37, 99, 235, ${0.1 + brightness * 0.25})`;
         } else {
-          ctx.fillStyle = `rgba(56, 189, 248, ${0.08 + brightness * 0.18})`;
+           if (brightness > 0.98) ctx.fillStyle = '#ffffff';
+           else if (brightness > 0.9) ctx.fillStyle = '#00d4ff';
+           else ctx.fillStyle = `rgba(56, 189, 248, ${0.08 + brightness * 0.18})`;
         }
+        
         ctx.font = `${fontSize}px JetBrains Mono, monospace`;
         ctx.fillText(char, i * fontSize, drops[i] * fontSize);
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
@@ -390,12 +396,11 @@ export default function HeroSection() {
 
             {/* Name */}
             <motion.h1
-              className="section-title grad"
-              data-text="VIVAN"
+              className="section-title"
               style={{
-                fontSize: 'clamp(3.5rem, 7.5vw, 7rem)',
-                fontWeight: 800,
-                lineHeight: 0.95,
+                fontSize: 'clamp(2rem, 6vw, 4rem)',
+                fontWeight: 900,
+                lineHeight: 1,
                 letterSpacing: '-0.04em',
                 marginBottom: 20,
                 perspective: '1000px',
@@ -403,31 +408,25 @@ export default function HeroSection() {
               }}
             >
               <div style={{ overflow: 'hidden', display: 'block' }}>
-                {"Vivan".split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    style={{ color: 'var(--text-primary)', display: 'inline-block' }}
-                    initial={{ y: 100, rotateX: -90, opacity: 0 }}
-                    animate={{ y: 0, rotateX: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.1 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
+                <motion.span
+                  style={{ color: 'var(--text-primary)', display: 'inline-block' }}
+                  initial={{ y: '100%' }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  VIVAN
+                </motion.span>
               </div>
-              <div style={{ overflow: 'hidden', display: 'block' }}>
-                {"Mittal".split("").map((char, i) => (
-                  <motion.span
-                    key={i}
-                    className="grad-text"
-                    style={{ display: 'inline-block' }}
-                    initial={{ y: 100, rotateX: -90, opacity: 0 }}
-                    animate={{ y: 0, rotateX: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.4 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    {char}
-                  </motion.span>
-                ))}
+              <div style={{ overflow: 'hidden', display: 'block', marginTop: -5 }}>
+                <motion.span
+                  className="grad-text"
+                  style={{ display: 'inline-block' }}
+                  initial={{ y: '100%' }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  MITTAL
+                </motion.span>
               </div>
             </motion.h1>
 

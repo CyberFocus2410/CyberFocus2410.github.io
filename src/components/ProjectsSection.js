@@ -29,96 +29,78 @@ const PROJECT_IMAGES = {
   'toursphere-backend': '/projects/project_toursphere_1774287452966.png'
 };
 
+const PINNED_LIST = [
+  { owner: 'CyberFocus2410', repo: 'LaunchLens' },
+  { owner: 'CyberFocus2410', repo: 'PhishLeakGuard_1' },
+  { owner: 'CyberFocus2410', repo: 'Health_Vault4' },
+  { owner: 'CyberFocus2410', repo: 'CyberFocus2410' },
+  { owner: 'Adhya08', repo: 'GFG' },
+  { owner: 'Fork-IT-2026', repo: 'VisionAI' },
+];
+
 function ProjectCard({ repo, index }) {
   const lang = repo.language;
-  const langMeta = LANG_COLORS[lang] || { color: '#64748b', bg: 'rgba(100,116,139,0.1)' };
-  const projectImg = PROJECT_IMAGES[repo.name];
+  const langMeta = repo.languageColor ? { color: repo.languageColor } : (LANG_COLORS[lang] || { color: '#64748b' });
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: (index % 6) * 0.07, ease: [0.23, 1, 0.32, 1] }}
-      className="card overflow-hidden"
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="card group"
       style={{
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        background: 'var(--surface)',
-        border: '1px solid var(--border)',
-        borderRadius: 20,
-        padding: 0,
+        minHeight: 280,
       }}
     >
-      {/* Project Image */}
-      {projectImg && (
-        <div style={{ position: 'relative', height: 180, width: '100%', overflow: 'hidden' }}>
-          <img 
-            src={projectImg} 
-            alt={repo.name}
-            style={{ 
-              width: '100%', 
-              height: '100%', 
-              objectFit: 'cover',
-              transition: 'transform 0.5s ease',
-            }}
-            className="hover-zoom"
-          />
-          <div style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(to bottom, transparent 40%, var(--surface) 100%)',
-          }} />
-          <div style={{
-              position: 'absolute',
-              top: 12,
-              right: 12,
-              background: 'rgba(245,158,11,0.25)',
-              border: '1px solid rgba(245,158,11,0.4)',
-              borderRadius: 5,
-              padding: '2px 8px',
-              backdropFilter: 'blur(8px)',
-            }}>
-              <span style={{ color: '#fbbf24', fontSize: 9, fontWeight: 700, fontFamily: 'JetBrains Mono, monospace' }}>PINNED</span>
-            </div>
+      <div style={{ padding: 20, flex: 1, display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <h3 className="font-display" style={{ fontSize: 17, fontWeight: 800, color: 'var(--text-primary)' }}>
+            {repo.name.replace(/_/g, ' ')}
+          </h3>
+          <div style={{ display: 'flex', gap: 8 }}>
+             {repo.stargazers_count > 0 && (
+               <span className="font-mono" style={{ fontSize: 10, color: 'var(--accent-tertiary)' }}>★ {repo.stargazers_count}</span>
+             )}
+          </div>
         </div>
-      )}
-
-      <div style={{ padding: 24, flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
-        <h3 className="font-mono" style={{ fontSize: 15, fontWeight: 700, color: 'var(--accent)' }}>
-          {repo.name}
-        </h3>
         
-        <p style={{ fontSize: 13, color: 'var(--text-muted)', lineHeight: 1.6, flex: 1 }}>
-          {repo.description || 'No description available for this pinned project.'}
+        <p style={{ 
+          fontSize: '0.82rem', 
+          color: 'var(--text-soft)', 
+          lineHeight: 1.6, 
+          flex: 1,
+          display: '-webkit-box',
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          minHeight: '4.8em',
+        }}>
+          {repo.description || 'Exploring security and software development.'}
         </p>
-
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 4 }}>
-          {repo.topics?.slice(0, 3).map((t) => (
-            <span key={t} className="tag-pill" style={{ fontSize: 10 }}>{t}</span>
-          ))}
-        </div>
 
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          paddingTop: 16,
-          marginTop: 8,
-          borderTop: '1px solid var(--border)',
+          paddingTop: 14,
+          marginTop: 6,
+          borderTop: '1px solid rgba(255,255,255,0.05)',
         }}>
-          <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: langMeta.color }} />
-            <span style={{ color: 'var(--text-soft)', fontFamily: 'JetBrains Mono, monospace' }}>{lang}</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10 }}>
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: langMeta.color }} />
+            <span style={{ color: 'var(--text-muted)', fontFamily: 'JetBrains Mono, monospace' }}>{lang}</span>
           </span>
-          <div style={{ display: 'flex', gap: 10 }}>
-            <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ padding: '4px 12px', fontSize: 11 }}>
-              Code
+          <div style={{ display: 'flex', gap: 12 }}>
+            <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-accent hover:underline">
+              REPO
             </a>
             {repo.homepage && (
-              <a href={repo.homepage} target="_blank" rel="noopener noreferrer" className="btn-outline" style={{ padding: '4px 12px', fontSize: 11, borderColor: 'var(--accent)', color: 'var(--accent)' }}>
-                Demo
+              <a href={repo.homepage} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-accent-secondary hover:underline">
+                DEMO
               </a>
             )}
           </div>
@@ -133,44 +115,43 @@ export default function ProjectsSection() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`)
-      .then(r => r.json())
-      .then(data => {
-        if (Array.isArray(data)) {
-          // FILTER: only keep pinned/featured
-          const pinned = data.filter(r => FEATURED.includes(r.name));
-          setRepos(pinned);
-        }
+    // Fetch individual pinned repos from the specified owners
+    const fetchPromises = PINNED_LIST.map(item => 
+      fetch(`https://api.github.com/repos/${item.owner}/${item.repo}`)
+        .then(res => res.ok ? res.json() : null)
+    );
+
+    Promise.all(fetchPromises)
+      .then(results => {
+        const valid = results.filter(r => r !== null);
+        setRepos(valid);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, []);
 
   return (
-    <section id="projects" className="section" style={{ background: 'var(--bg-base)', position: 'relative' }}>
-        <div className="section-inner" style={{ position: 'relative', zIndex: 1 }}>
+    <section id="projects" className="section" style={{ background: 'var(--bg-base)' }}>
+      <div className="section-inner">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
         >
-          <p className="section-label">02. Featured Projects</p>
+          <p className="section-label">02. Selected Work</p>
           <h2 className="section-title grad" data-text="WORK">Pinned Projects</h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: 15, marginBottom: 44, maxWidth: 520 }}>
-            Curated list of pinned projects with AI-visualized concepts.
+          <p style={{ color: 'var(--text-muted)', fontSize: 15, marginBottom: 32, maxWidth: 480 }}>
+            The top 6 projects currently pinned on my GitHub profile.
           </p>
 
           {loading ? (
-            <div className="font-mono" style={{ color: 'var(--text-muted)', fontSize: 13, display: 'flex', alignItems: 'center', gap: 10 }}>
-              <motion.span animate={{ opacity: [1, 0, 1] }} transition={{ duration: 1.2, repeat: Infinity }} style={{ color: 'var(--accent)' }}>▋</motion.span>
-              accessing restricted repo cache...
-            </div>
+             <div className="font-mono" style={{ color: 'var(--text-muted)', fontSize: 13 }}>Syncing results...</div>
           ) : (
             <div style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
-              gap: 32,
+              gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+              gap: 16,
             }}>
               {repos.map((repo, i) => (
                 <ProjectCard key={repo.id} repo={repo} index={i} />

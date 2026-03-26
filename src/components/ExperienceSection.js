@@ -88,49 +88,52 @@ export default function ExperienceSection() {
                 <div
                   className="card"
                   style={{
-                    padding: '24px 28px',
+                    padding: '32px',
                     background: 'var(--surface)',
                     marginLeft: 4,
+                    borderLeft: `4px solid ${exp.typeColor}`,
                   }}
                 >
                   {/* Top row: badge + date */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12, flexWrap: 'wrap', gap: 8 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 12 }}>
                     <span
                       className="font-mono"
                       style={{
                         fontSize: 10,
-                        padding: '3px 12px',
-                        borderRadius: 6,
+                        padding: '4px 14px',
+                        borderRadius: 8,
                         background: exp.typeBg,
                         color: exp.typeColor,
-                        border: `1px solid ${exp.typeColor}35`,
-                        letterSpacing: '0.1em',
+                        border: `1px solid ${exp.typeColor}25`,
+                        letterSpacing: '0.12em',
+                        fontWeight: 700,
                       }}
                     >
                       {exp.type.toUpperCase()}
                     </span>
-                    <span className="font-mono" style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                    <span className="font-mono" style={{ fontSize: 11, color: 'var(--text-muted)', fontWeight: 500 }}>
                       {exp.duration}
                     </span>
                   </div>
 
-                  <h3 className="font-display" style={{ fontSize: 18, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 4 }}>
+                  <h3 className="font-display" style={{ fontSize: 22, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 6, letterSpacing: '-0.02em' }}>
                     {exp.role}
                   </h3>
                   <p style={{
                     fontSize: 13,
-                    color: exp.typeColor,
-                    marginBottom: 16,
+                    color: 'var(--accent)',
+                    marginBottom: 20,
                     fontFamily: 'JetBrains Mono, monospace',
+                    fontWeight: 600,
                   }}>
                     @ {exp.org}
                   </p>
 
                   {/* Bullets */}
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                     {exp.bullets.map((b, bi) => (
-                      <li key={bi} style={{ display: 'flex', gap: 12, fontSize: 14, color: 'var(--text-muted)', lineHeight: 1.65 }}>
-                        <span style={{ color: exp.typeColor, flexShrink: 0, marginTop: 2 }}>▸</span>
+                      <li key={bi} style={{ display: 'flex', gap: 14, fontSize: 15, color: 'var(--text-soft)', lineHeight: 1.7 }}>
+                        <span style={{ color: exp.typeColor, flexShrink: 0, marginTop: 4, fontSize: 12 }}>✦</span>
                         {b}
                       </li>
                     ))}

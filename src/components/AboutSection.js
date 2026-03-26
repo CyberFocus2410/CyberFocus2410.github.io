@@ -58,9 +58,9 @@ export default function AboutSection() {
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(0, 240px) minmax(0, 1fr)',
-            gap: 64,
-            marginTop: 32,
+            gridTemplateColumns: 'minmax(0, 280px) minmax(0, 1fr)',
+            gap: 48,
+            marginTop: 48,
             alignItems: 'start',
           }}>
             {/* Photo column */}
@@ -94,11 +94,12 @@ export default function AboutSection() {
                 <div style={{
                   width: 200,
                   height: 200,
-                  borderRadius: '50%',
+                  borderRadius: 24,
                   overflow: 'hidden',
                   position: 'relative',
                   background: 'var(--surface)',
-                  border: '2px solid var(--border)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
                 }}>
                   <Image
                     src="/pfp.jpg"
@@ -106,6 +107,7 @@ export default function AboutSection() {
                     fill
                     sizes="200px"
                     style={{ objectFit: 'cover' }}
+                    className="hover-zoom"
                     priority
                   />
                 </div>
@@ -113,28 +115,22 @@ export default function AboutSection() {
 
               {/* Info card below photo */}
               <div className="card" style={{
-                padding: '16px 20px',
+                padding: '24px',
                 width: '100%',
                 textAlign: 'center',
-                background: 'var(--surface)',
+                background: 'rgba(56,189,248,0.03)',
+                borderColor: 'rgba(56,189,248,0.1)',
               }}>
-                <p className="font-mono" style={{ fontSize: 11, color: 'var(--accent)', letterSpacing: '0.12em', marginBottom: 4 }}>
-                  1ST YEAR · B.TECH CSE
+                <p className="font-mono text-accent" style={{ fontSize: 11, letterSpacing: '0.15em', marginBottom: 6, fontWeight: 700 }}>
+                  ESTD. 2006
                 </p>
-                <p style={{ fontSize: 13, color: 'var(--text-soft)', lineHeight: 1.5 }}>
-                  Delhi Technical Campus<br />Greater Noida
+                <p className="font-display" style={{ fontSize: 18, color: 'var(--text-primary)', fontWeight: 800, marginBottom: 8 }}>
+                  Vivan Mittal
                 </p>
-                <div style={{ marginTop: 12, height: 1, background: 'linear-gradient(to right, transparent, var(--border-bright), transparent)' }} />
-                <div style={{ marginTop: 10, display: 'flex', justifyContent: 'center', gap: 8 }}>
-                  {['Cyber', 'Dev', 'Builder'].map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-mono"
-                      style={{ fontSize: 10, color: 'var(--text-muted)', background: 'var(--surface-2)', border: '1px solid var(--border)', borderRadius: 4, padding: '2px 8px' }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                <div style={{ height: 1.5, width: 32, background: 'var(--accent)', margin: '12px auto' }} />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                   <p className="font-mono text-xs text-soft">B.Tech CSE (CyberSec)</p>
+                   <p className="font-mono text-xs text-muted">Delhi Technical Campus</p>
                 </div>
               </div>
             </motion.div>

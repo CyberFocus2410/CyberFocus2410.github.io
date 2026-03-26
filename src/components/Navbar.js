@@ -32,35 +32,53 @@ export default function Navbar() {
       left: 0,
       right: 0,
       zIndex: 100,
-      transition: 'all 0.3s ease',
-      // Much more visible background for light mode
-      background: scrolled 
-        ? (isLight ? '#ffffff' : 'rgba(2, 8, 23, 0.9)') 
-        : (isLight ? 'rgba(255, 255, 255, 0.8)' : 'transparent'),
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-      borderBottom: scrolled ? (isLight ? '1px solid #e2e8f0' : '1px solid #1a2540') : 'none',
-      boxShadow: scrolled ? '0 4px 30px rgba(0,0,0,0.1)' : 'none',
+      padding: scrolled ? '12px 0' : '20px 0',
+      transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
     }}>
       <div style={{
-        maxWidth: 1200,
+        maxWidth: 1000,
         margin: '0 auto',
-        padding: '0 28px',
-        height: 72,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        padding: '0 20px',
       }}>
+        <div style={{
+          background: scrolled 
+            ? (isLight ? 'rgba(255, 255, 255, 0.85)' : 'rgba(13, 20, 36, 0.75)') 
+            : 'transparent',
+          backdropFilter: scrolled ? 'blur(20px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
+          border: scrolled ? (isLight ? '1px solid rgba(0,0,0,0.05)' : '1px solid rgba(255,255,255,0.08)') : '1px solid transparent',
+          borderRadius: 24,
+          height: 64,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 24px',
+          boxShadow: scrolled ? '0 20px 40px -15px rgba(0,0,0,0.2)' : 'none',
+          transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+        }}>
         {/* Logo */}
-        <a href="#hero" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>
-          <span className="font-mono" style={{ fontSize: 16, color: 'var(--accent)', fontWeight: 700 }}>{'<'}</span>
-          <span className="font-display" style={{ 
-            fontSize: 20, 
+        <a href="#hero" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 6, transition: 'all 0.3s ease' }}>
+          <div style={{
+            width: 32,
+            height: 32,
+            background: 'linear-gradient(135deg, var(--accent), var(--accent-2))',
+            borderRadius: 8,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontWeight: 800,
+            fontSize: 14,
+            boxShadow: '0 4px 12px rgba(56, 189, 248, 0.3)',
+          }}>
+            VM
+          </div>
+          <span className="font-display hidden sm:inline" style={{ 
+            fontSize: 18, 
             fontWeight: 800, 
             color: isLight ? '#0f172a' : '#ffffff',
             letterSpacing: '-0.02em'
-          }}>VM</span>
-          <span className="font-mono" style={{ fontSize: 16, color: 'var(--accent-2)', fontWeight: 700 }}>{'/>'}</span>
+          }}>Vivan.</span>
         </a>
 
         {/* Desktop Nav */}
@@ -125,9 +143,10 @@ export default function Navbar() {
           </svg>
         </button>
       </div>
+    </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
+    {/* Mobile Menu */}
+    <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, x: '100%' }}
@@ -201,7 +220,7 @@ export default function Navbar() {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
-    </header>
+    </AnimatePresence>
+  </header>
   );
 }

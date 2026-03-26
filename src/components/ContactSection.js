@@ -109,41 +109,43 @@ export default function ContactSection() {
                 rel={action.download ? undefined : 'noopener noreferrer'}
                 className="card"
                 style={{
-                  padding: '28px 24px',
+                  padding: '32px 28px',
                   textDecoration: 'none',
                   display: 'flex',
                   flexDirection: 'column',
                   gap: 16,
-                  background: action.gradient,
-                  borderColor: action.border,
+                  background: 'var(--surface)',
+                  borderColor: 'rgba(255,255,255,0.08)',
                   cursor: 'pointer',
                 }}
                 whileHover={{
                   y: -8,
-                  boxShadow: `0 12px 40px ${action.color}18, 0 0 0 1px ${action.border}`,
+                  borderColor: action.color + '40',
+                  boxShadow: `0 20px 40px -15px ${action.color}15`,
                 }}
-                transition={{ type: 'spring', stiffness: 280, damping: 18 }}
+                transition={{ type: 'spring', stiffness: 280, damping: 20 }}
               >
-                <div style={{ fontSize: 36, lineHeight: 1 }}>{action.emoji}</div>
+                <div style={{ fontSize: 40, marginBottom: 8 }}>{action.emoji}</div>
                 <div>
-                  <p className="font-display" style={{ fontSize: 16, fontWeight: 700, color: 'var(--text-primary)', marginBottom: 5 }}>
+                  <p className="font-display" style={{ fontSize: 18, fontWeight: 800, color: 'var(--text-primary)', marginBottom: 4 }}>
                     {action.label}
                   </p>
-                  <p className="font-mono" style={{ fontSize: 11, color: action.color, opacity: 0.8 }}>
+                  <p className="font-mono" style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>
                     {action.sublabel}
                   </p>
                 </div>
                 <div style={{
-                  alignSelf: 'flex-start',
-                  fontSize: 12,
-                  color: action.color,
-                  border: `1px solid ${action.border}`,
-                  borderRadius: 7,
-                  padding: '4px 12px',
-                  fontFamily: 'JetBrains Mono, monospace',
-                  background: 'rgba(0,0,0,0.2)',
+                  marginTop: 'auto',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
                 }}>
-                  {action.download ? 'download' : 'open →'}
+                  <span style={{ fontSize: 11, fontWeight: 800, color: action.color, letterSpacing: '0.1em' }} className="font-mono">
+                    {action.download ? 'DOWNLOAD' : 'CONNECT'}
+                  </span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" style={{ color: action.color }}>
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
                 </div>
               </motion.a>
             ))}
