@@ -109,7 +109,7 @@ export default function Navbar() {
             )}
           </button>
 
-          <a href="/resume.pdf" download className="btn-primary" style={{ marginLeft: 16 }}>
+          <a href="/PORTFOLIO/resume.pdf" download className="btn-primary" style={{ marginLeft: 16 }}>
             Resume
           </a>
         </nav>
@@ -183,7 +183,7 @@ export default function Navbar() {
                   {isLight ? 'Switch to Dark' : 'Switch to Light'} Mode
                 </button>
                 <a 
-                  href="/resume.pdf" 
+                  href="/PORTFOLIO/resume.pdf" 
                   style={{ 
                     textAlign: 'center', 
                     padding: '16px', 

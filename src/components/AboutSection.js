@@ -101,7 +101,7 @@ export default function AboutSection() {
                   border: '2px solid var(--border)',
                 }}>
                   <Image
-                    src="/pfp.jpg"
+                    src="/PORTFOLIO/pfp.jpg"
                     alt="Vivan Mittal"
                     fill
                     sizes="200px"

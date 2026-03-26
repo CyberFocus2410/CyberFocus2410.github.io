@@ -37,7 +37,7 @@ const CONTACT_ACTIONS = [
     emoji: '📄',
     label: 'Download Resume',
     sublabel: 'PDF · Updated Mar 2026',
-    href: '/resume.pdf',
+    href: '/PORTFOLIO/resume.pdf',
     download: true,
     color: '#f59e0b',
     gradient: 'linear-gradient(135deg, rgba(245,158,11,0.1), rgba(245,158,11,0.03))',

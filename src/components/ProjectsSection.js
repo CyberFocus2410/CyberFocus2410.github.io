@@ -21,12 +21,12 @@ const REPO_FILTER_MAP = {
 };
 
 const PROJECT_IMAGES = {
-  'LaunchLens': '/projects/project_launchlens_1774287367690.png',
-  'PhishLeakGuard_1': '/projects/project_phishleakguard_1774287385294.png',
-  'CYBERCOP_OSINT': '/projects/project_cybercop_osint_1774287401654.png',
-  'Health_Vault4': '/projects/project_healthvault_1774287419280.png',
-  'SkillBridge_1': '/projects/project_skillbridge_1774287435430.png',
-  'toursphere-backend': '/projects/project_toursphere_1774287452966.png'
+  'LaunchLens': '/PORTFOLIO/projects/project_launchlens_1774287367690.png',
+  'PhishLeakGuard_1': '/PORTFOLIO/projects/project_phishleakguard_1774287385294.png',
+  'CYBERCOP_OSINT': '/PORTFOLIO/projects/project_cybercop_osint_1774287401654.png',
+  'Health_Vault4': '/PORTFOLIO/projects/project_healthvault_1774287419280.png',
+  'SkillBridge_1': '/PORTFOLIO/projects/project_skillbridge_1774287435430.png',
+  'toursphere-backend': '/PORTFOLIO/projects/project_toursphere_1774287452966.png'
 };
 
 function ProjectCard({ repo, index }) {
