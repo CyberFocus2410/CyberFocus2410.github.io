@@ -17,11 +17,6 @@ const SOCIALS = [
     href: 'mailto:cyberfocus2410@gmail.com', 
     icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> 
   },
-  { 
-    label: 'Discord', 
-    href: 'https://discord.com/users/cyberhub2410', 
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.3 6.7a3.8 3.8 0 0 0-2.3 2.3A3.8 3.8 0 0 0 6.7 10.3m10.6-3.6a3.8 3.8 0 0 1 2.3 2.3 3.8 3.8 0 0 1 1.3 1.3m-13.9 3.6a3.8 3.8 0 0 1-2.3 2.3"></path><path d="M11 20H4l.6-3.4A16.4 16.4 0 0 1 2 10a16.4 16.4 0 0 1 1.6-4.6c.7-1.4 1.8-2.6 3-3.4a16.4 16.4 0 0 1 10.8 0 13.3 13.3 0 0 1 3 3.4 16.4 16.4 0 0 1 1.6 4.6 16.4 16.4 0 0 1-.6 6.6L22 20h-7.1"></path></svg> 
-  }
 ];
 
 export default function SocialSidebar() {
