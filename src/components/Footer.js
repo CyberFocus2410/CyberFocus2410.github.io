@@ -18,17 +18,15 @@ export default function Footer() {
       {/* Subtle grid */}
       <div className="bg-grid-subtle" style={{ position: 'absolute', inset: 0, opacity: 0.4 }} />
 
-      <div style={{
-        maxWidth: 1200,
-        margin: '0 auto',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: 20,
-        position: 'relative',
-        zIndex: 1,
-      }}>
+      <div 
+        className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-8"
+        style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 1,
+        }}
+      >
         {/* Brand */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 3, marginBottom: 6 }}>

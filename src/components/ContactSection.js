@@ -189,7 +189,7 @@ export default function ContactSection() {
                 method="POST"
                 style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
               >
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {[
                     { name: 'name', placeholder: 'Your name', type: 'text' },
                     { name: 'email', placeholder: 'your@email.com', type: 'email' },

@@ -86,11 +86,12 @@ function CyberProfile() {
     <motion.div
       style={{
         position: 'relative',
-        width: 380,
-        height: 380,
+        width: 'min(380px, 85vw)',
+        height: 'min(380px, 85vw)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        margin: '0 auto',
       }}
     >
       {/* Radar rings */}
@@ -133,8 +134,8 @@ function CyberProfile() {
       {/* Central Shield Badge (Re-integrated per user request) */}
       <div style={{
         position: 'relative',
-        width: 250,
-        height: 250,
+        width: 'min(250px, 60vw)',
+        height: 'min(250px, 60vw)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -338,13 +339,10 @@ export default function HeroSection() {
 
       {/* Main content */}
       <div className="section-inner" style={{ position: 'relative', zIndex: 2, width: '100%', paddingBottom: 0 }}>
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1.2fr) minmax(0, 0.8fr)',
-          gap: 64,
-          alignItems: 'center',
-          textAlign: 'left',
-        }}>
+        <div 
+          className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-16 items-center text-center lg:text-left"
+          style={{ width: '100%', paddingBottom: 0 }}
+        >
           {/* Left: Text */}
           <div>
             {/* Status badge */}
@@ -352,7 +350,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: 28, display: 'flex', gap: 12, flexWrap: 'wrap' }}
+              className="flex flex-wrap gap-3 mb-7 justify-center lg:justify-start"
             >
               <div style={{
                 display: 'inline-flex',
@@ -444,7 +442,7 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               style={{ marginBottom: 20 }}
             >
-              <p className="font-mono" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.3rem)', color: 'var(--text-soft)' }}>
+              <p className="font-mono" style={{ fontSize: 'clamp(0.85rem, 2vw, 1.2rem)', color: 'var(--text-soft)' }}>
                 <span style={{ color: 'var(--border-bright)' }}>{'> '}</span>
                 <TypewriterText />
               </p>
@@ -461,7 +459,10 @@ export default function HeroSection() {
                 maxWidth: 500,
                 lineHeight: 1.75,
                 marginBottom: 40,
+                marginLeft: 'auto',
+                marginRight: 'auto',
               }}
+              className="lg:ml-0"
             >
               Building security tools and accessible technology — one commit at a time.
               <br />
@@ -469,18 +470,18 @@ export default function HeroSection() {
             </motion.p>
 
             {/* CTAs */}
-              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center', marginBottom: 32, justifyContent: 'flex-start' }} className="mt-8">
-                <a href="#projects" className="btn-primary">
+              <div className="flex flex-wrap gap-3 items-center justify-center lg:justify-start mt-8 mb-8">
+                <a href="#projects" className="btn-primary" style={{ padding: '10px 20px', fontSize: 13 }}>
                   <span>View Projects</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M7 17l9.2-9.2M17 17V7H7"/>
                   </svg>
                 </a>
-                <a href="/resume.pdf" download className="btn-outline">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <a href="/resume.pdf" download className="btn-outline" style={{ padding: '10px 20px', fontSize: 13 }}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
                   </svg>
-                  <span>Download Resume</span>
+                  <span>Resume</span>
                 </a>
               </div>
 
@@ -489,14 +490,7 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              style={{
-                display: 'flex',
-                gap: 0,
-                borderTop: '1px solid var(--border)',
-                paddingTop: 24,
-                flexWrap: 'wrap',
-                justifyContent: 'flex-start',
-              }}
+              className="flex flex-wrap gap-x-10 gap-y-6 pt-8 border-t border-white/5 justify-center lg:justify-start"
             >
               {[
                 { value: '10+', label: 'Projects' },
@@ -504,16 +498,9 @@ export default function HeroSection() {
                 { value: 'CyberSec', label: 'Focus Area' },
                 { value: '1st Yr', label: 'BTech CSE' },
               ].map((stat, i) => (
-                <div
-                  key={stat.label}
-                  style={{
-                    padding: '0 28px',
-                    borderRight: i < 3 ? '1px solid var(--border)' : 'none',
-                    paddingLeft: i === 0 ? 0 : 28,
-                  }}
-                >
+                <div key={stat.label} className="min-w-[100px]">
                   <div className="font-display" style={{
-                    fontSize: 26,
+                    fontSize: 22,
                     fontWeight: 800,
                     background: i % 2 === 0 ? 'linear-gradient(135deg, #4f46e5, #38bdf8)' : 'linear-gradient(135deg, #f59e0b, #ef4444)',
                     WebkitBackgroundClip: 'text',
@@ -522,18 +509,19 @@ export default function HeroSection() {
                   }}>
                     {stat.value}
                   </div>
-                  <div style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 2, textAlign: 'left' }}>{stat.label}</div>
+                  <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 2, textAlign: 'inherit', whiteSpace: 'nowrap', letterSpacing: '0.05em' }}>
+                    {stat.label.toUpperCase()}
+                  </div>
                 </div>
               ))}
             </motion.div>
           </div>
 
-          {/* Right Column */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, delay: 0.3, ease: 'backOut' }}
-            className="hidden lg:flex items-center justify-center"
+            className="flex items-center justify-center p-4 lg:p-0 order-first lg:order-none"
           >
             <CyberProfile />
           </motion.div>

@@ -68,18 +68,14 @@ export default function AboutSection() {
 
       <div className="section-inner" style={{ position: 'relative', zIndex: 1 }}>
         <motion.div variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-80px' }}>
-          <motion.div variants={fadeUp}>
-            <p className="section-label">01. Who I Am</p>
+          <motion.div variants={fadeUp} className="text-center lg:text-left">
+            <p className="section-label justify-center lg:justify-start">01. Who I Am</p>
             <h2 className="section-title grad" data-text="PROFILE">About Me</h2>
           </motion.div>
 
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(0, 280px) minmax(0, 1fr)',
-            gap: 48,
-            marginTop: 48,
-            alignItems: 'start',
-          }}>
+          <div 
+            className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-12 mt-12 items-start"
+          >
             {/* Photo column */}
             <motion.div variants={fadeUp} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
               {/* Photo with hexagon-ish glow */}
